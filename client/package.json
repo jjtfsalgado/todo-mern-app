@@ -12,8 +12,11 @@
   "dependencies": {
     "axios": "^0.15.3",
     "express": "^4.14.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^0.14.8",
+    "react-bootstrap": "^0.30.8",
+    "react-dom": "^0.14.8",
+    "react-fontawesome": "^1.5.0",
+    "react-icons": "^2.2.3",
     "react-router": "^2.0.0"
   },
   "devDependencies": {
@@ -40,6 +43,7 @@
     "sass-loader": "^4.1.1",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
+    "susy": "^2.2.12",
     "webpack": "^1.12.13"
   }
 }

@@ -24,6 +24,7 @@ app.use(function (req, res, next){
 app.post('/todos', (req, res) => {
   var todo = new Todo({
     text: req.body.text,
+    createdAt: req.body.createdAt
     // _creator: req.user._id
   });
 
@@ -47,13 +48,13 @@ app.get('/todos', (req, res) => {
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
 
-  if (!ObjectID.isValid(id)) {
-    return res.status(404).send();
-  }
+  // if (!ObjectID.isValid(id)) {
+  //   return res.status(404).send();
+  // }
 
   Todo.findOne({
     _id: id,
-    _creator: req.user._id
+    // _creator: req.user._id
   }).then((todo) => {
     if (!todo) {
       return res.status(404).send();
@@ -74,8 +75,8 @@ app.delete('/todos/:id', (req, res) => {
   }
 
   Todo.findOneAndRemove({
-    _id: id,
-    _creator: req.user._id
+    _id: id
+    // _creator: req.user._id
   }).then((todo) => {
     if (!todo) {
       return res.status(404).send();
@@ -86,28 +87,79 @@ app.delete('/todos/:id', (req, res) => {
   });
 });
 
+app.patch('/todos/:id/completed', (req, res) => {
+  var id = req.params.id;
+  console.log(req.body);
+
+  Todo.findById(id, function (err, todo) {
+      if (err) {
+          res.status(500).send(err);
+      } else {
+
+          todo.completed = req.body.completed;
+          todo.completedAt = req.body.completedAt;
+
+          todo.save(function (err, recipe) {
+              if (err) {
+                  res.status(500).send(err)
+              }
+              res.send(todo);
+          });
+      }
+  });
+  // var todos = req.body;
+  // for (var i = 0; i < todos.length; i++) {
+  //   var id = todos[i]._id)
+  //
+  //   Todo.findById(id, function (err, todo) {
+  //       if (err) {
+  //           res.status(500).send(err);
+  //       } else {
+  //
+  //           todo.completed = todos[i].completed;
+  //
+  //           todo.save(function (err, todo) {
+  //
+  //               res.send(todo);
+  //           });
+  //       }
+  //   });
+  //   res.send(200)
+  // }
+
+});
+
+
 app.patch('/todos/:id', (req, res) => {
   var id = req.params.id;
-  var body = _.pick(req.body, ['text', 'completed']);
+  // var body = _.pick(req.body, ['text', 'completed']);
+  //
+  // if (!ObjectID.isValid(id)) {
+  //   return res.status(404).send();
+  // }
+  //
+  // if (_.isBoolean(body.completed) && body.completed) {
+  //   body.completedAt = new Date().getTime();
+  // } else {
+  //   body.completedAt = null;
+  // }
 
-  if (!ObjectID.isValid(id)) {
-    return res.status(404).send();
-  }
+  Todo.findById(id, function (err, todo) {
+      if (err) {
+          res.status(500).send(err);
+      } else {
 
-  if (_.isBoolean(body.completed) && body.completed) {
-    body.completedAt = new Date().getTime();
-  } else {
-    body.completedAt = null;
-  }
+          todo.text = req.body.text;
+          todo.createdAt = req.body.createdAt;
 
-  Todo.findOneAndUpdate({_id: id, _creator: req.user._id}, {$set:body}, {new: true}).then((todo) => {
-    if(!todo){
-      return res.status(404).send();
-    }
-    res.send({todo});
-  }).catch((e) => {
-    res.status(400).send();
-  })
+          todo.save(function (err, recipe) {
+              if (err) {
+                  res.status(500).send(err)
+              }
+              res.send(todo);
+          });
+      }
+  });
 });
 
 app.post('/users', (req, res) => {

@@ -4,11 +4,12 @@ const axios = require('axios');
 const API_URL = 'http://localhost:3000';
 
 module.exports = {
-  setTodos: function (todos) {
-    if ($.isArray(todos)) {
-      localStorage.setItem('todos', JSON.stringify(todos));
-      return todos;
-    }
+  addTodo: function (todo) {
+    return axios.post(`${API_URL}/todos`, todo).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      throw error;
+    });
   },
   getTodos: function () {
     return axios.get(`${API_URL}/todos`).then(function (response) {
@@ -19,12 +20,16 @@ module.exports = {
       throw error;
     });
 
-    var todos = [];
-
+  },
+  saveCompleted: function (id, completed, completedAt) {
+    return axios.patch(`${API_URL}/todos/${id}/completed`, {completed:completed, completedAt:completedAt}).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      throw error;
+    });
   },
   filterTodos: function (todos, showCompleted, searchText) {
     var filteredTodos = todos;
-    // console.log(todos);
 
     // Filter by showCompleted
     filteredTodos = filteredTodos.filter((todo) => {
@@ -48,5 +53,19 @@ module.exports = {
     });
 
     return filteredTodos;
+  },
+  deleteTodo: function (id) {
+    return axios.delete(`${API_URL}/todos/${id}`).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+  editTodo: function (id, text, createdAt) {
+    return axios.patch(`${API_URL}/todos/${id}`, {text:text, createdAt:createdAt}).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      throw error;
+    });
   }
 };

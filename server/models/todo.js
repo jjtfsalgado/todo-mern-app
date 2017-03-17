@@ -14,6 +14,10 @@ var Todo = mongoose.model('Todo', {
   completedAt: {
     type: Number,
     default: null
+  },
+  createdAt: {
+    required: true,
+    type: String
   }
   // ,
   // _creator: {
