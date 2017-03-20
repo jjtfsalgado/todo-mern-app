@@ -89,7 +89,6 @@ app.delete('/todos/:id', (req, res) => {
 
 app.patch('/todos/:id/completed', (req, res) => {
   var id = req.params.id;
-  console.log(req.body);
 
   Todo.findById(id, function (err, todo) {
       if (err) {

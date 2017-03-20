@@ -89,9 +89,7 @@ var Todo = React.createClass({
     };
 
     return(
-      <div>
-          {renderEdit()}
-      </div>
+        <div>{renderEdit()}</div>
     );
   }
 });

@@ -17,11 +17,18 @@ $susy:(
 	padding-top: 10px;
 	padding-bottom: 10px;
   transition: background .3s ease;
+	position: relative;
 
   .col1{
     @include span(1);
-    margin:0;
+		// position: absolute;
+		height: 100%;
+		input{
 
+			vertical-align: middle;
+			margin:0;
+			// top: 50%;
+		}
   }
 
   .col2{

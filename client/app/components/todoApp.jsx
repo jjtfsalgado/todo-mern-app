@@ -1,5 +1,6 @@
 var React = require('react');
 var moment = require('moment');
+var {Link, IndexLink} = require('react-router');
 
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
@@ -100,8 +101,8 @@ var TodoApp = React.createClass({
 
       return(
         <div>
-          <h1 className="page-title">ToDo App</h1>
-
+          <h1 className="page-title">ToDo</h1>
+          <IndexLink to="/" className="button-logout">Logout</IndexLink>
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
               <div className="container">

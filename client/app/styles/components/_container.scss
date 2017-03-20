@@ -3,31 +3,48 @@
   border: 1px solid $light-grey-border;
   border-radius: 5px;
   padding: 0;
-  margin-bottom: 2rem;
-}
+  height: auto;
 
-.container__header{
-  border-bottom: 1px solid $light-grey-border;
-  padding: 1rem;
+  .container__header{
+    border-bottom: 1px solid $light-grey-border;
+    padding: 1rem;
 
-  label{
-    cursor: pointer;
-    font-size: 1rem;
+    label{
+      cursor: pointer;
+      font-size: 1rem;
+    }
   }
 
-  >:last-child{
-    align-items: center;
-    display: flex;
+  .container__todos{
+    padding: 0;
+    border-top: 1px solid $light-grey-border;
+    border-bottom: 1px solid $light-grey-border;
+    margin: 0;
+    width: 100%;
+    display: table;
+    list-style-type: none;
+
+    .todo{
+      padding: 1rem;
+    }
+    .container__message{
+      color: $light-color;
+      margin: 0 auto;
+      padding: 29px;
+      text-align: center;
+    }
   }
-}
 
-.container__footer{
-  padding: 1rem 1rem 0 1rem;
-  border-top: 1px solid $light-grey-border;
-}
+  .container__footer{
+    padding: 1rem;
+    border-top: 1px solid $light-grey-border;
 
-.container__message{
-  color: $light-color;
-  margin: 2rem auto;
-  text-align: center;
+    button{
+      margin: 0;
+    }
+
+    input{
+      margin-bottom: 1rem;
+    }
+  }
 }
