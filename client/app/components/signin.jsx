@@ -28,7 +28,7 @@ var SignIn = React.createClass({
       var that = this;
       UserAPI.signIn(email, password).then(function (res) {
         console.log('Sucess! You are signed in');
-        that.context.router.push('/');
+        that.props.history.push('/');
       }).catch(function (error) {
         throw error;
       });
