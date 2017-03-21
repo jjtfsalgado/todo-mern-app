@@ -1,15 +1,20 @@
 import React from 'react';
 var {Link, IndexLink, hashHistory} = require('react-router');
-import { Button, FormGroup, FormControl, Form, ControlLabel, Checkbox} from 'react-bootstrap';
 
 var UserAPI = require('userAPI');
 
 var Login = React.createClass({
   getInitialState(){
     return {
-      email: '',
-      password: ''
+      email: UserAPI.getLocalUser() ? UserAPI.getLocalUser().email : '',
+      password: UserAPI.getLocalUser() ? UserAPI.getLocalUser().password : '',
+      remember: true
     };
+  },
+  handleCheck: function() {
+    this.setState({
+      remember: this.refs.showCompleted.checked
+    })
   },
   handleChange(e){
     const name = e.target.name;
@@ -22,17 +27,30 @@ var Login = React.createClass({
     var email = this.state.email;
     var password = this.state.password;
 
-    if (email.length > 0 && password.length > 5) {
+    if (email && password.length > 5 && password) {
+      if (this.state.remember) {
+        UserAPI.rememberUser(email, password);
+      } else {
+        window.localStorage.removeItem('userLocal');
+      }
       var that = this;
       UserAPI.logIn(email, password).then(function (res) {
         console.log('Sucess! You are logged in');
-        hashHistory.push('/todos');
+        window.location.reload()
       }).catch(function (error) {
         throw error;
       });
 
+    }else if (password.length <= 5) {
+      this.refs.passwordText.focus();
     }else{
-      // this.refs.todoText.focus();
+      this.refs.emailText.focus();
+    }
+
+  },
+  componentDidMount: function () {
+    if (this.state.email == '') {
+      this.refs.emailText.focus();
     }
   },
   render() {
@@ -43,16 +61,13 @@ var Login = React.createClass({
           <div className="columns small-centered small-10 medium-6 large-4">
             <p>Login into your account</p>
             <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
-              <FormGroup>
-                <FormControl type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
-              </FormGroup>
-              <FormGroup>
-                <FormControl type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-              </FormGroup>
-              <FormGroup>
-                <Checkbox>Remember me</Checkbox>
-              </FormGroup>
-              <Button type="submit" className="button expanded">Login</Button>
+                <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                <input className="form-control" type="password" ref="passwordText" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                <label>
+                  <input type="checkbox" ref="showCompleted" defaultChecked="true" onClick={this.handleCheck}/>
+                  Remember me
+                </label>
+              <button type="submit" className="button expanded">Login</button>
             </form>
             <div className="columns small-centered signin">
               <Link to="/signin">Sign In</Link>

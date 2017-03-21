@@ -1,7 +1,7 @@
 var React = require('react');
 var moment = require('moment');
-var {Link, IndexLink} = require('react-router');
-
+var {Link, IndexLink, hashHistory} = require('react-router');
+const axios = require('axios');
 import {FaCircle} from 'react-icons/lib/fa';
 
 var TodoList = require('TodoList');
@@ -107,6 +107,7 @@ var TodoApp = React.createClass({
   },
   handleSignOut: function () {
     UserAPI.signOut().then(function () {
+      window.location.reload()
     }).catch(function (error) {
       throw error;
     });
@@ -138,7 +139,20 @@ var TodoApp = React.createClass({
       );
     } else {
       return(
-        <h1>Fetching data</h1>
+        <div>
+          <h1 className="page-title">ToDo</h1>
+          <ul className="button-logout">
+            <li>{this.state.user}</li>
+            <li><FaCircle/></li>
+            <li><a href="#" onClick={this.handleSignOut}>Logout</a></li>
+          </ul>
+          <div className="row">
+            <div className="column small-centered small-11 medium-6 large-5">
+              <div className="container">
+              </div>
+            </div>
+          </div>
+        </div>
       )
     }
   }

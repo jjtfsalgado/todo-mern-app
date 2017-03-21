@@ -21,20 +21,27 @@ var SignIn = React.createClass({
     e.preventDefault();
     var email = this.state.email;
     var password = this.state.password;
-
     if (email.length > 0 && password.length > 0) {
       var that = this;
       UserAPI.signIn(email, password).then(function (res) {
         console.log('Sucess! You are signed in');
-        hashHistory.push('/');
       }).catch(function (error) {
         throw error;
       });
+      window.localStorage.removeItem('userLocal');
 
       this.state.email = '';
       this.state.password = '';
+
+    }else if (password.length <= 5) {
+      this.refs.passwordText.focus();
     }else{
-      this.refs.todoText.focus();
+      this.refs.emailText.focus();
+    }
+  },
+  componentDidMount: function () {
+    if (this.state.email == '') {
+      this.refs.emailText.focus();
     }
   },
   render() {
@@ -45,12 +52,8 @@ var SignIn = React.createClass({
           <div className="columns small-centered small-10 medium-6 large-4">
             <p>Sign in into ToDo</p>
             <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
-              <FormGroup>
-                <FormControl type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
-              </FormGroup>
-              <FormGroup>
-                <FormControl type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-              </FormGroup>
+              <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+              <input className="form-control" type="password" ref="passwordText" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
               <button type="submit" className="button expanded">Sign In</button>
             </form>
             <div className="columns small-centered signin">

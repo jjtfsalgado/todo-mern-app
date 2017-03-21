@@ -13,6 +13,11 @@
       cursor: pointer;
       font-size: 1rem;
     }
+
+    input:focus{
+      border-color: #cacaca;
+      box-shadow: inset 0 0 1px #2199e8, 0 0 2px #2199e8;
+    }
   }
 
   .container__todos{
@@ -45,6 +50,11 @@
 
     input{
       margin-bottom: 1rem;
+    }
+
+    input:focus{
+      border-color: #cacaca;
+      box-shadow: inset 0 0 1px #2199e8, 0 0 2px #2199e8;
     }
   }
 }

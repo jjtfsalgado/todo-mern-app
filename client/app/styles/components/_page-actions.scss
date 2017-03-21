@@ -3,11 +3,19 @@
   list-style-type: none;
   top:0;
   right:0;
-  padding: 10px;
+  padding: 10px 20px 0px 0px;
   color: #2199e8;
-
+  
   li{
     display: inline;
     padding: 5px;
+  }
+
+  a{
+    color:#999;
+  }
+  a:hover{
+    color: #2199e8;
+    text-decoration: underline;
   }
 }
