@@ -1,8 +1,8 @@
 import React from 'react';
-var {Link, IndexLink, browserHistory} = require('react-router');
+var {Link, IndexLink, hashHistory} = require('react-router');
 import { Button, FormGroup, FormControl, Form, ControlLabel, Checkbox} from 'react-bootstrap';
 
-var UserAPI = require('userApi');
+var UserAPI = require('userAPI');
 
 var SignIn = React.createClass({
   getInitialState(){
@@ -19,16 +19,14 @@ var SignIn = React.createClass({
   },
   onFormSubmit: function (e) {
     e.preventDefault();
-    console.log('submit');
     var email = this.state.email;
     var password = this.state.password;
-    console.log(email, password);
 
     if (email.length > 0 && password.length > 0) {
       var that = this;
       UserAPI.signIn(email, password).then(function (res) {
         console.log('Sucess! You are signed in');
-        that.props.history.push('/');
+        hashHistory.push('/');
       }).catch(function (error) {
         throw error;
       });

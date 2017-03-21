@@ -7,7 +7,6 @@ module.exports = {
     return axios.post(`${API_URL}/users`, {email:email, password:password}).then(function (response) {
       console.log(response);
     }).catch(function (error) {
-      console.log('error');
       throw error;
     });
   },
@@ -15,7 +14,22 @@ module.exports = {
     return axios.post(`${API_URL}/users/login`, {email:email, password:password}).then(function (response) {
       axios.defaults.headers.common['x-auth'] = response.headers['x-auth'];
     }).catch(function (error) {
-      console.log('error');
+      throw error;
+    });
+  },
+  signOut: function () {
+    return axios.delete(`${API_URL}/users/me/token`).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+  getUser: function () {
+    return axios.get(`${API_URL}/users/me`).then(function (response) {
+      var email = response.data.email;
+      var name = email.substring(0, email.lastIndexOf("@"));
+      return name;
+    }).catch(function (error) {
       throw error;
     });
   }

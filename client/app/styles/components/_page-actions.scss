@@ -1,6 +1,13 @@
 .button-logout {
   position:absolute;
+  list-style-type: none;
   top:0;
   right:0;
-  padding: 20px;
+  padding: 10px;
+  color: #2199e8;
+
+  li{
+    display: inline;
+    padding: 5px;
+  }
 }

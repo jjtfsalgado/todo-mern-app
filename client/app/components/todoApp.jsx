@@ -2,21 +2,33 @@ var React = require('react');
 var moment = require('moment');
 var {Link, IndexLink} = require('react-router');
 
+import {FaCircle} from 'react-icons/lib/fa';
+
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var TodoSearch = require('TodoSearch');
 var TodoAPI = require('todoAPI');
+var UserAPI = require('userAPI');
 
 var TodoApp = React.createClass({
   getInitialState: function () {
     return{
       showCompleted: false,
       searchText: '',
-      todos: undefined
+      todos: undefined,
+      user: ''
     };
   },
   componentWillMount: function () {
     var that = this;
+
+    UserAPI.getUser().then(function (res) {
+      that.setState({
+        user: res
+      })
+    }).catch(function (error) {
+      throw error;
+    });
 
     TodoAPI.getTodos().then(function (res) {
       that.setState({
@@ -93,6 +105,12 @@ var TodoApp = React.createClass({
     });
     this.setState({todos: updatedTodos});
   },
+  handleSignOut: function () {
+    UserAPI.signOut().then(function () {
+    }).catch(function (error) {
+      throw error;
+    });
+  },
   render:function () {
 
     if (this.state.todos) {
@@ -102,7 +120,11 @@ var TodoApp = React.createClass({
       return(
         <div>
           <h1 className="page-title">ToDo</h1>
-          <IndexLink to="/" className="button-logout">Logout</IndexLink>
+          <ul className="button-logout">
+            <li>{this.state.user}</li>
+            <li><FaCircle/></li>
+            <li><a href="#" onClick={this.handleSignOut}>Logout</a></li>
+          </ul>
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
               <div className="container">

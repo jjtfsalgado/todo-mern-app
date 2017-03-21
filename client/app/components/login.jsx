@@ -1,8 +1,8 @@
 import React from 'react';
-var {Link, IndexLink, browserHistory} = require('react-router');
+var {Link, IndexLink, hashHistory} = require('react-router');
 import { Button, FormGroup, FormControl, Form, ControlLabel, Checkbox} from 'react-bootstrap';
 
-var UserAPI = require('userApi');
+var UserAPI = require('userAPI');
 
 var Login = React.createClass({
   getInitialState(){
@@ -19,16 +19,14 @@ var Login = React.createClass({
   },
   onFormSubmit: function (e) {
     e.preventDefault();
-    console.log('submit');
     var email = this.state.email;
     var password = this.state.password;
-    console.log(email, password);
 
     if (email.length > 0 && password.length > 5) {
       var that = this;
       UserAPI.logIn(email, password).then(function (res) {
         console.log('Sucess! You are logged in');
-        that.props.history.push('/todos');
+        hashHistory.push('/todos');
       }).catch(function (error) {
         throw error;
       });
@@ -40,7 +38,7 @@ var Login = React.createClass({
   render() {
     return (
       <div>
-        <h1 className="page-title">Todo App</h1>
+        <h1 className="page-title">ToDo</h1>
         <div className="row">
           <div className="columns small-centered small-10 medium-6 large-4">
             <p>Login into your account</p>
