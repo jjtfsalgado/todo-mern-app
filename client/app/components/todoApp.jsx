@@ -2,6 +2,7 @@ var React = require('react');
 var moment = require('moment');
 var {Link, IndexLink, hashHistory} = require('react-router');
 const axios = require('axios');
+var {Dropdown, ButtonToolbar, MenuItem} = require("react-bootstrap");
 import {FaCircle} from 'react-icons/lib/fa';
 
 var TodoList = require('TodoList');
@@ -120,15 +121,29 @@ var TodoApp = React.createClass({
 
       return(
         <div>
-          <h1 className="page-title">ToDo</h1>
-          <ul className="button-logout">
-            <li>{this.state.user}</li>
-            <li><FaCircle/></li>
-            <li><a href="#" onClick={this.handleSignOut}>Logout</a></li>
-          </ul>
+          <div className="row">
+            <h1 className="page-title">ToDo</h1>
+            <div className="button-logout">
+              <ButtonToolbar>
+                <Dropdown noCaret pullRight className="dropdown">
+                  <Dropdown.Toggle noCaret className="dropdown" >
+                    <ul className="user">
+                      <li>{this.state.user}</li>
+                      <li><FaCircle/></li>
+                    </ul>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="lista">
+                    <MenuItem eventKey="1" onClick={this.handleSignOut}>Logout</MenuItem>
+                    <MenuItem divider />
+                    <MenuItem eventKey="2" onClick={this.handleSignOut}>Delete Account</MenuItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </ButtonToolbar>
+            </div>
+          </div>
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
-              <div className="container">
+              <div className="box">
                 <TodoSearch onSearch={this.handleSearch}/>
                 <TodoList todos={filteredTodos} onToggle={this.handleToggle} onDelete={this.handleDelete} onEdit={this.handleEdit}/>
                 <AddTodo onAddTodo={this.handleAddTodo}/>
@@ -141,11 +156,7 @@ var TodoApp = React.createClass({
       return(
         <div>
           <h1 className="page-title">ToDo</h1>
-          <ul className="button-logout">
-            <li>{this.state.user}</li>
-            <li><FaCircle/></li>
-            <li><a href="#" onClick={this.handleSignOut}>Logout</a></li>
-          </ul>
+
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
               <div className="container">

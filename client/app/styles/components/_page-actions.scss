@@ -5,11 +5,6 @@
   right:0;
   padding: 10px 20px 0px 0px;
   color: #2199e8;
-  
-  li{
-    display: inline;
-    padding: 5px;
-  }
 
   a{
     color:#999;
@@ -18,4 +13,55 @@
     color: #2199e8;
     text-decoration: underline;
   }
+
+  .dropdown{
+    background: white;
+    border: none;
+    color: #2199e8;
+    padding: 0 0 3px 0;
+
+    .user{
+      list-style-type: none;
+      margin: 0;
+
+
+      li{
+        display: inline;
+        vertical-align: middle;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .dropdown:hover{
+    text-decoration: underline;
+  }
+
+  .lista{
+    color:#353535;
+
+    a{
+      color:#999;
+      transition: color .3s ease;
+    }
+
+    a:hover{
+      color: #2199e8;
+    }
+  }
+}
+
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+  background: white;
+  border: none;
+  color: #2199e8;
+}
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none;
+}
+
+.btn:active{
+  box-shadow: none;
 }

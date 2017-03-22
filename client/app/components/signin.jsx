@@ -23,12 +23,16 @@ var SignIn = React.createClass({
     var password = this.state.password;
     if (email.length > 0 && password.length > 0) {
       var that = this;
+
       UserAPI.signIn(email, password).then(function (res) {
-        console.log('Sucess! You are signed in');
+        console.log('Confirm email');
+        window.localStorage.removeItem('userLocal');
+        UserAPI.rememberUser(email);
+
       }).catch(function (error) {
         throw error;
       });
-      window.localStorage.removeItem('userLocal');
+
 
       this.state.email = '';
       this.state.password = '';
