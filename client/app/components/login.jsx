@@ -62,10 +62,15 @@ var Login = React.createClass({
             <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
                 <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
                 <input className="form-control" type="password" ref="passwordText" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                <label>
-                  <input type="checkbox" ref="showCompleted" defaultChecked="true" onClick={this.handleCheck}/>
-                  Remember me
-                </label>
+                <div className="row">
+                  <label className="col1">
+                    <input type="checkbox" ref="showCompleted" defaultChecked="true" onClick={this.handleCheck}/>
+                    Remember me
+                  </label>
+                  <div className="col2">
+                    <a href="#"><p>Forgot password?</p></a>
+                  </div>
+                </div>
               <button type="submit" className="button expanded">Login</button>
             </form>
             <div className="columns small-centered signin">

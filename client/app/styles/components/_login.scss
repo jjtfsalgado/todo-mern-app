@@ -23,9 +23,50 @@
 .callout{
   margin:0;
   color:#353535;
+  @include span(12);
 
   span{
     color:#353535;
+  }
+
+  .row{
+    padding-bottom: 1rem;
+
+    .col1{
+      @include span(6);
+      padding-left: 2rem;
+
+      span{
+        margin: 0;
+        transition: color 0.3s ease;
+        color: #999;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      span:hover{
+        color:#2199e8;
+        transition: color 0.3s ease;
+        text-decoration: underline;
+      }
+    }
+
+    .col2{
+      @include span(6 at 6);
+      padding-right: 2rem;
+        p{
+          margin: 0;
+          transition: color 0.3s ease;
+          color: #999;
+          text-align: right;
+          text-decoration: none;
+        }
+      p:hover{
+        color:#2199e8;
+        transition: color 0.3s ease;
+        text-decoration: underline;
+      }
+    }
   }
 }
 
