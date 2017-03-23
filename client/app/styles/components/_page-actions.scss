@@ -1,3 +1,4 @@
+
 .button-logout {
   position:absolute;
   list-style-type: none;
@@ -5,63 +6,88 @@
   right:0;
   padding: 10px 20px 0px 0px;
   color: #2199e8;
+	font-size: 1rem;
 
   a{
-    color:#999;
-  }
-  a:hover{
-    color: #2199e8;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
-  .dropdown{
-    background: white;
-    border: none;
-    color: #2199e8;
-    padding: 0 0 3px 0;
+  .dropdown-menu{
+    left:-11px;
+    min-width:120px;
+    margin: 0;
+    padding: 0;
 
-    .user{
-      list-style-type: none;
-      margin: 0;
-
-
-      li{
-        display: inline;
-        vertical-align: middle;
-        padding-left: 5px;
-      }
-    }
   }
 
-  .dropdown:hover{
-    text-decoration: underline;
-  }
-
-  .lista{
-    color:#353535;
+  .list-unstyled{
+    margin: 0;
+    padding: 10px;
+    display: table;
+    transition: color .3s ease;
+    @include span(12);
 
     a{
       color:#999;
       transition: color .3s ease;
     }
 
+    a:focus{
+      outline: none;
+      outline-offset: 0;
+    }
     a:hover{
       color: #2199e8;
     }
+
+    .delete{
+      list-style-type: none;
+      @include span(12);
+      .col1{
+        @include span(6);
+        text-align: center;
+
+        .check{
+          color:#999;
+        }
+
+        .check:hover{
+          color: #2199e8;
+          transition: color .3s ease;
+        }
+      }
+
+      .col2{
+        @include span(6 at 6);
+        text-align: center;
+
+        .back{
+          color:#999;
+        }
+
+        .back:hover{
+          color: #2199e8;
+          transition: color .3s ease;
+        }
+      }
+    }
   }
-}
 
+  .user{
+    color: #2199e8;
+    list-style-type: none;
+    margin: 0;
 
-.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
-  background: white;
-  border: none;
-  color: #2199e8;
-}
+      li{
+        display: inline;
+        vertical-align: middle;
+        padding-left: 5px;
+      }
+  }
 
-.btn-group.open .dropdown-toggle {
-  box-shadow: none;
-}
+  .user:hover{
+    color: #2199e8;
+    text-decoration: underline;
+  }
 
-.btn:active{
-  box-shadow: none;
 }

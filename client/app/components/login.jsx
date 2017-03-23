@@ -36,7 +36,6 @@ var Login = React.createClass({
       var that = this;
       UserAPI.logIn(email, password).then(function (res) {
         console.log('Sucess! You are logged in');
-        window.location.reload()
       }).catch(function (error) {
         throw error;
       });

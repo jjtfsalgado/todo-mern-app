@@ -14,6 +14,7 @@ module.exports = {
     return axios.post(`${API_URL}/users/login`, {email:email, password:password}).then(function (response) {
       axios.defaults.headers.common['x-auth'] = response.headers['x-auth'];
       window.localStorage.setItem('token', response.headers['x-auth']);
+      window.location.reload();
     }).catch(function (error) {
       throw error;
     });
@@ -22,6 +23,7 @@ module.exports = {
     return axios.delete(`${API_URL}/users/me/token`).then(function (response) {
       console.log(response);
       window.localStorage.removeItem('token');
+      window.location.reload();
     }).catch(function (error) {
       throw error;
     });
@@ -31,6 +33,16 @@ module.exports = {
       var email = response.data.email;
       var name = email.substring(0, email.lastIndexOf("@"));
       return name;
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+  deleteAccount: function () {
+    return axios.delete(`${API_URL}/users/me`).then(function (response) {
+      console.log(response);
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('userLocal');
+      window.location.reload();
     }).catch(function (error) {
       throw error;
     });

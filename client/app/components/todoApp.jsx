@@ -1,15 +1,13 @@
 var React = require('react');
 var moment = require('moment');
-var {Link, IndexLink, hashHistory} = require('react-router');
-const axios = require('axios');
-var {Dropdown, ButtonToolbar, MenuItem} = require("react-bootstrap");
-import {FaCircle} from 'react-icons/lib/fa';
+
+var TodoAPI = require('todoAPI');
+var UserAPI = require('userAPI');
 
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var TodoSearch = require('TodoSearch');
-var TodoAPI = require('todoAPI');
-var UserAPI = require('userAPI');
+var LogoutDelete = require('LogoutDelete');
 
 var TodoApp = React.createClass({
   getInitialState: function () {
@@ -106,13 +104,6 @@ var TodoApp = React.createClass({
     });
     this.setState({todos: updatedTodos});
   },
-  handleSignOut: function () {
-    UserAPI.signOut().then(function () {
-      window.location.reload()
-    }).catch(function (error) {
-      throw error;
-    });
-  },
   render:function () {
 
     if (this.state.todos) {
@@ -123,23 +114,7 @@ var TodoApp = React.createClass({
         <div>
           <div className="row">
             <h1 className="page-title">ToDo</h1>
-            <div className="button-logout">
-              <ButtonToolbar>
-                <Dropdown noCaret pullRight className="dropdown">
-                  <Dropdown.Toggle noCaret className="dropdown" >
-                    <ul className="user">
-                      <li>{this.state.user}</li>
-                      <li><FaCircle/></li>
-                    </ul>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu className="lista">
-                    <MenuItem eventKey="1" onClick={this.handleSignOut}>Logout</MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey="2" onClick={this.handleSignOut}>Delete Account</MenuItem>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </ButtonToolbar>
-            </div>
+            <LogoutDelete user={this.state.user}/>
           </div>
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
@@ -156,7 +131,6 @@ var TodoApp = React.createClass({
       return(
         <div>
           <h1 className="page-title">ToDo</h1>
-
           <div className="row">
             <div className="column small-centered small-11 medium-6 large-5">
               <div className="container">
