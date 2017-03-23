@@ -8,7 +8,7 @@ var SignIn = React.createClass({
   getInitialState(){
     return {
       email: '',
-      password1: '',
+      password1:'',
       password2:''
     };
   },
@@ -61,25 +61,46 @@ var SignIn = React.createClass({
     }
   },
   render() {
-    return (
-      <div>
-        <h1 className="page-title">ToDo</h1>
-        <div className="row">
-          <div className="columns small-centered small-10 medium-6 large-4">
-            <p>Sign in into ToDo</p>
-            <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
-              <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
-              <input className="form-control" type="password" ref="password1" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder="Password" />
-              <input className="form-control" type="password" ref="password2" name="password2" value={this.state.password2} onChange={this.handleChange} placeholder="Confirm Password" />
-              <button type="submit" className="button expanded">Sign In</button>
-            </form>
-            <div className="columns small-centered signin">
-              <IndexLink to="/">Login</IndexLink>
+    if (this.state.password1.length < 6) {
+      return (
+        <div>
+          <h1 className="page-title">ToDo</h1>
+          <div className="row">
+            <div className="columns small-centered small-10 medium-6 large-4">
+              <p>Sign in into ToDo</p>
+              <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
+                <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                <input className="form-control" type="password" ref="password1" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder="Password" />
+                <button type="submit" className="button expanded">Sign In</button>
+              </form>
+              <div className="columns small-centered signin">
+                <IndexLink to="/">Login</IndexLink>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <h1 className="page-title">ToDo</h1>
+          <div className="row">
+            <div className="columns small-centered small-10 medium-6 large-4">
+              <p>Sign in into ToDo</p>
+              <form className="callout callout-auth" onSubmit={this.onFormSubmit}>
+                <input className="form-control" type="email" ref="emailText" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                <input className="form-control" type="password" ref="password1" name="password1" value={this.state.password1} onChange={this.handleChange} placeholder="Password" />
+                <input className="form-control" type="password" ref="password2" name="password2" value={this.state.password2} onChange={this.handleChange} placeholder="Confirm Password" />
+                <button type="submit" className="button expanded">Sign In</button>
+              </form>
+              <div className="columns small-centered signin">
+                <IndexLink to="/">Login</IndexLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 });
 
