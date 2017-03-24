@@ -68,7 +68,7 @@ var Login = React.createClass({
                     Remember me
                   </label>
                   <div className="col2">
-                    <a href="#"><p>Forgot password?</p></a>
+                    <Link to="/password">Forgot password?</Link>
                   </div>
                 </div>
               <button type="submit" className="button expanded">Login</button>

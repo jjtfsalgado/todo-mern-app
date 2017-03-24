@@ -54,14 +54,14 @@
     .col2{
       @include span(6 at 6);
       padding-right: 2rem;
-        p{
+        a{
           margin: 0;
           transition: color 0.3s ease;
           color: #999;
-          text-align: right;
+          float: right;
           text-decoration: none;
         }
-      p:hover{
+      a:hover{
         color:#2199e8;
         transition: color 0.3s ease;
         text-decoration: underline;

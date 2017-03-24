@@ -47,6 +47,14 @@ module.exports = {
       throw error;
     });
   },
+  resetPassword: function (email, password) {
+    return axios.post(`${API_URL}/password`, {email:email, password:password}).then(function (response) {
+      console.log(response);
+      window.localStorage.removeItem('userLocal');
+    }).catch(function (error) {
+      throw error;
+    });
+  },
   rememberUser: function (email, password) {
     var userLocal = {
       email: email,

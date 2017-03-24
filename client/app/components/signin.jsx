@@ -1,6 +1,5 @@
 import React from 'react';
 var {Link, IndexLink, hashHistory} = require('react-router');
-import { Button, FormGroup, FormControl, Form, ControlLabel, Checkbox} from 'react-bootstrap';
 
 var UserAPI = require('userAPI');
 
@@ -26,7 +25,7 @@ var SignIn = React.createClass({
     if (email.length > 0 && password1.length > 5 && password1==password2) {
       var that = this;
 
-      UserAPI.signIn(email, password).then(function (res) {
+      UserAPI.signIn(email, password2).then(function (res) {
         console.log('Confirm email');
         window.localStorage.removeItem('userLocal');
         UserAPI.rememberUser(email);

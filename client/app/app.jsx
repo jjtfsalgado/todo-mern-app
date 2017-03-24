@@ -7,7 +7,7 @@ var UserAPI = require('userAPI');
 var TodoApp = require('todoApp');
 var Login = require('login');
 var SignIn = require('signin')
-
+var Password = require('password');
 
 var token = window.localStorage.getItem('token');
 
@@ -40,6 +40,7 @@ ReactDOM.render(
     <Route path="/">
       <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
       <Route path="signin" component={SignIn} />
+      <Route path="password" component={Password} onEnter={redirectIfLoggedIn}/>
       <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
     </Route>
   </Router>,
