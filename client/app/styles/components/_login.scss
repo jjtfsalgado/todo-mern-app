@@ -3,12 +3,17 @@
   text-align: center;
   padding-top: 1rem;
   font-size: 0.9rem;
-  a{
-    color: #999;
-    transition: color 0.3s ease;
-  }
-}
 
+    a{
+      color: #999;
+      transition: color 0.3s ease;
+    }
+}
+.form-control-feedback{
+  width: 25px;
+  padding-right: 10px;
+  vertical-align: center;
+}
 .form-control:focus {
   border-color: #cacaca;
   box-shadow: inset 0 0 1px #2199e8, 0 0 2px #2199e8;
@@ -28,7 +33,9 @@
   span{
     color:#353535;
   }
-
+  .error{
+    color: #c51818;
+  }
   .row{
     padding-bottom: 1rem;
 
@@ -77,4 +84,8 @@
 }
 .button{
   margin: 0;
+}
+
+.alert{
+  margin-top: 1rem;
 }

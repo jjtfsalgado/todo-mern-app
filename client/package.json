@@ -20,7 +20,8 @@
     "react-fontawesome": "^1.5.0",
     "react-icons": "^2.2.3",
     "react-overlays": "^0.6.12",
-    "react-router": "^2.0.0"
+    "react-router": "^2.0.0",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.1",

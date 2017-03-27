@@ -8,7 +8,8 @@ var Password = React.createClass({
   getInitialState(){
     return {
       email: '',
-      tokenCode: false
+      tokenCode: false,
+      password2:''
     };
   },
   componentWillMount:function () {

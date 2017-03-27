@@ -37,6 +37,13 @@ module.exports = {
       throw error;
     });
   },
+  checkEmailExist: function (email) {
+    return axios.post(`${API_URL}/users/email`, {email:email}).then(function (response) {
+      return response.data;
+    }).catch(function (error) {
+      throw error;
+    });
+  },
   deleteAccount: function () {
     return axios.delete(`${API_URL}/users/me`).then(function (response) {
       console.log(response);
