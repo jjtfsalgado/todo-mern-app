@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3000';
 module.exports = {
   signIn: function (email, password) {
     return axios.post(`${API_URL}/users/verify`, {email:email, password:password}).then(function (response) {
-      console.log(response);
+      return JSON.parse(response.config.data);
     }).catch(function (error) {
       throw error;
     });

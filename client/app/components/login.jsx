@@ -1,5 +1,6 @@
 import React from 'react';
 var {Link, IndexLink, hashHistory} = require('react-router');
+var {Alert} = require("react-bootstrap");
 
 var UserAPI = require('userAPI');
 
@@ -8,7 +9,8 @@ var Login = React.createClass({
     return {
       email: UserAPI.getLocalUser() ? UserAPI.getLocalUser().email : '',
       password: UserAPI.getLocalUser() ? UserAPI.getLocalUser().password : '',
-      remember: true
+      remember: true,
+      validation: undefined
     };
   },
   handleCheck: function() {
@@ -20,6 +22,7 @@ var Login = React.createClass({
     const name = e.target.name;
     this.setState({
       [name]: e.target.value,
+      validation: undefined
     })
   },
   onFormSubmit: function (e) {
@@ -27,7 +30,7 @@ var Login = React.createClass({
     var email = this.state.email;
     var password = this.state.password;
 
-    if (email && password.length > 5 && password) {
+    if (email && password) {
       if (this.state.remember) {
         UserAPI.rememberUser(email, password);
       } else {
@@ -37,13 +40,18 @@ var Login = React.createClass({
       UserAPI.logIn(email, password).then(function (res) {
         console.log('Sucess! You are logged in');
       }).catch(function (error) {
+        that.setState({
+          validation: false,
+          password: ''
+        })
         throw error;
       });
-
-    }else if (password.length <= 5) {
-      this.refs.passwordText.focus();
     }else{
       this.refs.emailText.focus();
+      this.setState({
+        validation: false,
+        password: ''
+      })
     }
 
   },
@@ -53,6 +61,15 @@ var Login = React.createClass({
     }
   },
   render() {
+
+    if (this.state.validation == false) {
+      var alert = (
+        <Alert bsStyle="warning">
+          <strong>Couldn't login</strong> Please try again.
+        </Alert>
+      )
+    }
+
     return (
       <div>
         <h1 className="page-title">ToDo</h1>
@@ -76,6 +93,11 @@ var Login = React.createClass({
             <div className="columns small-centered signin">
               <Link to="/signin">Sign In</Link>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="columns small-centered small-10 medium-6 large-4">
+            {alert}
           </div>
         </div>
       </div>

@@ -11,25 +11,23 @@ var SignIn = React.createClass({
   mixins: [SetTimeoutMixin],
   getInitialState(){
     return {
-      username: '',
+      email: '',
       password1:'',
       password2:'',
       validationEmail: undefined,
-      error: undefined,
+      submit: undefined,
       validationPassword1: undefined,
       validationPassword2: undefined,
       user: undefined
     };
   },
   handleChange(e){
-    e.target.classList.add('active');
     const name = e.target.name;
     var that = this;
-    var textInput = document.getElementById(`${name}`);
 
     this.setState({
       [name]: e.target.value,
-      error: false
+      submit: undefined
     })
 
     this.clearTimeouts();
@@ -43,13 +41,19 @@ var SignIn = React.createClass({
     var password1 = this.state.validationPassword1;
     var password2 = this.state.validationPassword2;
 
-    if (email == 'success' || 'success'== password1 || password2 == 'success') {
+    if (email == 'success' && 'success'== password1 && password2 == 'success') {
       var that = this;
 
-      UserAPI.signIn(this.state.username, this.state.password2).then(function (res) {
-        console.log('Confirm email');
+      UserAPI.signIn(this.state.email, this.state.password2).then(function (res) {
+        console.log(res.email);
         window.localStorage.removeItem('userLocal');
-        UserAPI.rememberUser(that.state.username);
+        UserAPI.rememberUser(res.email);
+        that.setState({
+          submit: 'success',
+          validationEmail: undefined,
+          validationPassword1: undefined,
+          validationPassword2: undefined
+        })
 
       }).catch(function (error) {
         throw error;
@@ -60,9 +64,8 @@ var SignIn = React.createClass({
       this.state.password2 = '';
 
     }else{
-
       this.setState({
-        error: true,
+        submit: 'warning',
         password1:'',
         password2:''
       })
@@ -80,22 +83,22 @@ var SignIn = React.createClass({
     const errorPass1 = document.getElementById(`password1Error`);
     const errorPass2 = document.getElementById(`password2Error`);
 
-    if (targetName == 'username') {
+    if (targetName == 'email') {
 
-      if (this.state.username == '') {
+      if (this.state.email == '') {
         errorUser.textContent = `Email is a required field`;
         this.setState({validationEmail: 'error'});
-      } else if (!validator.isEmail(this.state.username)) {
+      } else if (!validator.isEmail(this.state.email)) {
         errorUser.textContent = `Should be a valid email address`;
         this.setState({validationEmail: 'error'});
-      } else if(validator.isEmail(this.state.username)){
+      } else if(validator.isEmail(this.state.email)){
         var that = this;
-        UserAPI.checkEmailExist(this.state.username).then(function (res) {
+        UserAPI.checkEmailExist(this.state.email).then(function (res) {
           if (res.length === 0) {
             errorUser.textContent = '';
             that.setState({validationEmail: 'success'});
           } else {
-            errorUser.textContent = `Your email already exists`;
+            errorUser.textContent = `Your email already exists in our records`;
             that.setState({validationEmail: 'error'});
           }
         }).catch(function (error) {
@@ -108,7 +111,11 @@ var SignIn = React.createClass({
     } else if (targetName == 'password1') {
       if (this.state.password1.length < 6) {
         errorPass1.textContent = 'Password must have min 6 characters';
-        this.setState({validationPassword1: 'error'});
+        this.setState({
+          validationPassword1: 'error',
+          password2: '',
+          validationPassword2: undefined
+        });
       } else if ((this.state.password2 != '') && (this.state.password1 != this.state.password2)) {
         errorPass2.textContent = "Passwords didn't match";
         this.setState({
@@ -137,10 +144,18 @@ var SignIn = React.createClass({
       </FormControl.Feedback>
     )
 
-    if (this.state.error) {
-      var error = (
-        <Alert bsStyle="warning">
+    if (this.state.submit == 'warning') {
+      var alert = (
+        <Alert bsStyle={this.state.submit}>
           <strong>Couldn't submit</strong> Please fullfill the form again.
+        </Alert>
+      )
+    }
+
+    if (this.state.submit == 'success') {
+      var alert = (
+        <Alert bsStyle={this.state.submit}>
+          <strong>Success!</strong> Please click on the link sended to your email.
         </Alert>
       )
     }
@@ -184,10 +199,10 @@ var SignIn = React.createClass({
                 <FormGroup validationState={this.state.validationEmail}>
                   <input className="form-control"
                     type="email"
-                    name="username"
+                    name="email"
                     ref="username"
                     id="username"
-                    value={this.state.username}
+                    value={this.state.email}
                     onChange={this.handleChange}
                     placeholder="Email"
                     required/>
@@ -216,7 +231,7 @@ var SignIn = React.createClass({
           </div>
           <div className="row">
             <div className="columns small-centered small-10 medium-6 large-4">
-              {error}
+              {alert}
             </div>
           </div>
         </div>
