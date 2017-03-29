@@ -13,16 +13,13 @@ module.exports = {
   },
   getTodos: function () {
     return axios.get(`${API_URL}/todos`).then(function (response) {
-
       return response.data.todos;
-
     }).catch(function (error) {
       throw error;
     });
-
   },
   saveCompleted: function (id, completed, completedAt) {
-    return axios.patch(`${API_URL}/todos/${id}/completed`, {completed:completed, completedAt:completedAt}).then(function (response) {
+    return axios.patch(`${API_URL}/todos/${id}`, {completed:completed, completedAt:completedAt}).then(function (response) {
       console.log(response);
     }).catch(function (error) {
       throw error;

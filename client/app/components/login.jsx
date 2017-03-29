@@ -2,7 +2,7 @@ import React from 'react';
 var {Link, IndexLink, hashHistory} = require('react-router');
 var {Alert} = require("react-bootstrap");
 
-var UserAPI = require('userAPI');
+var UserAPI = require('UserAPI');
 
 var Login = React.createClass({
   getInitialState(){

@@ -6,7 +6,7 @@ import {FaCircle, FaCheck, FaTimesCircle} from 'react-icons/lib/fa';
 var jwtDecode = require('jwt-decode');
 import SetTimeoutMixin from 'mixins/settimeout';
 
-var UserAPI = require('userAPI');
+var UserAPI = require('UserAPI');
 
 var Password = React.createClass({
   mixins: [SetTimeoutMixin],
@@ -22,8 +22,8 @@ var Password = React.createClass({
     };
   },
   componentWillMount:function () {
-    if (this.props.location.query.id) {
-      var token = this.props.location.query.id;
+    if (this.props.location.query.verify) {
+      var token = this.props.location.query.verify;
       var tokenDecoded = jwtDecode(token);
       if (tokenDecoded.email) {
         this.setState({

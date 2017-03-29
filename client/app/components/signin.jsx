@@ -5,7 +5,7 @@ var {FormGroup, FormControl, Alert} = require("react-bootstrap");
 import {FaCircle, FaCheck, FaTimesCircle} from 'react-icons/lib/fa';
 var {Link, IndexLink, hashHistory} = require('react-router');
 
-var UserAPI = require('userAPI');
+var UserAPI = require('UserAPI');
 
 var SignIn = React.createClass({
   mixins: [SetTimeoutMixin],
@@ -24,7 +24,6 @@ var SignIn = React.createClass({
   handleChange(e){
     const name = e.target.name;
     var that = this;
-
     this.setState({
       [name]: e.target.value,
       submit: undefined
@@ -44,10 +43,9 @@ var SignIn = React.createClass({
     if (email == 'success' && 'success'== password1 && password2 == 'success') {
       var that = this;
 
-      UserAPI.signIn(this.state.email, this.state.password2).then(function (res) {
-        console.log(res.email);
+      UserAPI.signIn(this.state.email, this.state.password2).then(function (email) {
         window.localStorage.removeItem('userLocal');
-        UserAPI.rememberUser(res.email);
+        UserAPI.rememberUser(email);
         that.setState({
           submit: 'success',
           validationEmail: undefined,
@@ -82,16 +80,15 @@ var SignIn = React.createClass({
     const errorUser = document.getElementById(`usernameError`);
     const errorPass1 = document.getElementById(`password1Error`);
     const errorPass2 = document.getElementById(`password2Error`);
-
+    var isEmail = validator.isEmail(this.state.email);
     if (targetName == 'email') {
-
       if (this.state.email == '') {
         errorUser.textContent = `Email is a required field`;
         this.setState({validationEmail: 'error'});
-      } else if (!validator.isEmail(this.state.email)) {
+      } else if (!isEmail) {
         errorUser.textContent = `Should be a valid email address`;
         this.setState({validationEmail: 'error'});
-      } else if(validator.isEmail(this.state.email)){
+      } else if(isEmail){
         var that = this;
         UserAPI.checkEmailExist(this.state.email).then(function (res) {
           if (res.length === 0) {

@@ -1,8 +1,8 @@
 var React = require('react');
 var moment = require('moment');
 
-var TodoAPI = require('todoAPI');
-var UserAPI = require('userAPI');
+var TodoAPI = require('TodoAPI');
+var UserAPI = require('UserAPI');
 
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');

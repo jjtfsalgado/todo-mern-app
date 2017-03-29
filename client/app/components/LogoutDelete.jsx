@@ -4,7 +4,7 @@ import {FaCircle, FaCheck, FaTimesCircle} from 'react-icons/lib/fa';
 var {CustomToggle, CustomMenu} = require('Dropdown');
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
-var UserAPI = require('userAPI');
+var UserAPI = require('UserAPI');
 
 var LogoutDelete = React.createClass({
   getInitialState: function () {

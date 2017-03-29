@@ -4,8 +4,8 @@ const API_URL = 'http://localhost:3000';
 
 module.exports = {
   signIn: function (email, password) {
-    return axios.post(`${API_URL}/users/verify`, {email:email, password:password}).then(function (response) {
-      return JSON.parse(response.config.data);
+    return axios.post(`${API_URL}/users`, {email:email, password:password}).then(function (response) {
+      return response.data.email;
     }).catch(function (error) {
       throw error;
     });
@@ -20,7 +20,7 @@ module.exports = {
     });
   },
   signOut: function () {
-    return axios.delete(`${API_URL}/users/me/token`).then(function (response) {
+    return axios.delete(`${API_URL}/users/login`).then(function (response) {
       console.log(response);
       window.localStorage.removeItem('token');
       window.location.reload();
@@ -29,8 +29,8 @@ module.exports = {
     });
   },
   getUser: function () {
-    return axios.get(`${API_URL}/users/me`).then(function (response) {
-      var email = response.data.email;
+    return axios.get(`${API_URL}/users/email`).then(function (response) {
+      var email = response.data;
       var name = email.substring(0, email.lastIndexOf("@"));
       return name;
     }).catch(function (error) {
@@ -45,7 +45,7 @@ module.exports = {
     });
   },
   deleteAccount: function () {
-    return axios.delete(`${API_URL}/users/me`).then(function (response) {
+    return axios.delete(`${API_URL}/users`).then(function (response) {
       console.log(response);
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('userLocal');
@@ -55,7 +55,7 @@ module.exports = {
     });
   },
   resetPassword: function (email, password) {
-    return axios.post(`${API_URL}/password`, {email:email, password:password}).then(function (response) {
+    return axios.patch(`${API_URL}/users`, {email:email, password:password}).then(function (response) {
       console.log(response);
       window.localStorage.removeItem('userLocal');
     }).catch(function (error) {

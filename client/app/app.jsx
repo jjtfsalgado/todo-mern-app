@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory, browserHistory} = require('react-router');
 const axios = require('axios');
-var UserAPI = require('userAPI');
 
 var TodoApp = require('todoApp');
 var Login = require('login');
