@@ -8,17 +8,12 @@ var user = require('./controllers/user');
 
 var app = express();
 
+app.set('trust proxy', '127.0.0.1');
+
 app.use(bodyParser.json());
 
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
-app.use(function (req, res, next){
-  if (req.headers['x-forwarded-proto'] === 'https') {
-    res.redirect('http://' + req.hostname + req.url);
-  } else {
-    next();
-  }
-});
 
 app.post('/todos', authenticate, todo.addTodo);
 app.get('/todos', authenticate, todo.getTodos);
