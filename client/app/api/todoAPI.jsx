@@ -1,7 +1,7 @@
 var $ = require('jquery');
 const axios = require('axios');
 
-const API_URL = 'http://www.josesalgado.me';
+const API_URL = 'http://josesalgado.me';
 
 module.exports = {
   addTodo: function (todo) {
