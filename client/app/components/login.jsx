@@ -91,7 +91,7 @@ var Login = React.createClass({
               <button type="submit" className="button expanded">Login</button>
             </form>
             <div className="columns small-centered signin">
-              <Link to="/signin">Sign In</Link>
+              <Link to="/signup">Sign Up</Link>
             </div>
           </div>
         </div>

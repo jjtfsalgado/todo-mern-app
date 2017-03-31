@@ -5,7 +5,7 @@ const axios = require('axios');
 
 var TodoApp = require('todoApp');
 var Login = require('login');
-var SignIn = require('signin')
+var SignUp = require('signup')
 var Password = require('password');
 
 var token = window.localStorage.getItem('token');
@@ -38,7 +38,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/">
       <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
-      <Route path="signin" component={SignIn} />
+      <Route path="signup" component={SignUp} />
       <Route path="password" component={Password} onEnter={redirectIfLoggedIn}/>
       <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
     </Route>

@@ -7,7 +7,7 @@ var {Link, IndexLink, hashHistory} = require('react-router');
 
 var UserAPI = require('UserAPI');
 
-var SignIn = React.createClass({
+var SignUp = React.createClass({
   mixins: [SetTimeoutMixin],
   getInitialState(){
     return {
@@ -191,7 +191,7 @@ var SignIn = React.createClass({
           <h1 className="page-title">ToDo</h1>
           <div className="row">
             <div className="columns small-centered small-10 medium-6 large-4">
-              <p>Sign in into ToDo</p>
+              <p>Sign Up into ToDo</p>
               <form className="callout callout-auth">
                 <FormGroup validationState={this.state.validationEmail}>
                   <input className="form-control"
@@ -219,7 +219,7 @@ var SignIn = React.createClass({
                      <div className="error" id="password1Error"></div>
                    </FormGroup>
                 {confirmPassword}
-                <button type="submit" className="button expanded" onClick={this.onFormSubmit}>Sign In</button>
+                <button type="submit" className="button expanded" onClick={this.onFormSubmit}>Sign Up</button>
               </form>
               <div className="columns small-centered signin">
                 <IndexLink to="/" className="route-button">Login</IndexLink>
@@ -236,4 +236,4 @@ var SignIn = React.createClass({
   }
 });
 
-module.exports = SignIn;
+module.exports = SignUp;

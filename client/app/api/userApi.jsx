@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://www.josesalgado.me';
 
 module.exports = {
   signIn: function (email, password) {
