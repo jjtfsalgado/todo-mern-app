@@ -32,7 +32,7 @@ And thats it!! Hopefully it will run on port 3000.
 * [MERN](http://mern.io/) - Combination of Javascript technologies used to develop fullstack web applications
 * [npm](https://www.npmjs.com/) - Package manager for JavaScript
 
-  # Front-end
+  #### Front-end
 * [Axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js
 * [Sass](http://sass-lang.com/) - Css pre-processor
 * [React-Bootstrap](https://react-bootstrap.github.io/) - The most popular front-end framework, rebuilt for React
@@ -41,7 +41,7 @@ And thats it!! Hopefully it will run on port 3000.
 * [Foundation](http://foundation.zurb.com/) - Responsive front-end framework
 * [Webpack](https://webpack.js.org/) - Module bundler for modern JavaScript applications
 
-  # Back-end
+  #### Back-end
 * [Nodemon](https://nodemon.io/) - Auto-refresh the server on code change
 * [JWT](https://jwt.io/) - JSON Web Tokens are a method for representing claims securely between two parties
 * [Nodemailer](https://nodemailer.com/about/) - Module for Node.js to send emails
@@ -51,4 +51,4 @@ And thats it!! Hopefully it will run on port 3000.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
