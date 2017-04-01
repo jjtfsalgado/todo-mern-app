@@ -7,7 +7,7 @@ A step by step series of examples that tell you have to get a development env ru
 
 1. Clone the repo
 ```
-git@github.com:jjtfsalgado/todo-mern-app.git
+git clone git@github.com:jjtfsalgado/todo-mern-app.git
 ```
 
 2. Install mongodb and run mongo server
