@@ -152,7 +152,7 @@ var Password = React.createClass({
     if (this.state.submit == 'success') {
       var alert = (
         <Alert bsStyle={this.state.submit}>
-          <strong>Success!</strong> Please click on the link sended to your email.
+          <strong>Success!</strong> Please click on the link sent to your email.
         </Alert>
       )
     }
