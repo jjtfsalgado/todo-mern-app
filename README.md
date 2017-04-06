@@ -1,5 +1,5 @@
 # ToDo MERN 
-ToDo app built with MongoDB, Express, React and Node (MERN stack), and deployed on DigitalOcean with Nginx reverse proxy server. This application was developed on a training context with no commercial purposes.
+ToDo app built with MongoDB, Express, React and Node (MERN stack), and deployed on DigitalOcean with Nginx reverse proxy server. 
 
 ### Installing
 
@@ -51,4 +51,4 @@ And thats it!! Hopefully it will run on port 3000.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details. This application was developed on a training context with no commercial purposes.
