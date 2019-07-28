@@ -29,19 +29,11 @@ And thats it!! Hopefully it will run on port 3000.
 
 ## Built With
 
-* [MERN](http://mern.io/) - Combination of Javascript technologies used to develop fullstack web applications
-* [npm](https://www.npmjs.com/) - Package manager for JavaScript
-
-  #### Front-end
 * [Axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js
 * [Sass](http://sass-lang.com/) - Css pre-processor
 * [React-Bootstrap](https://react-bootstrap.github.io/) - The most popular front-end framework, rebuilt for React
 * [Susy](http://susy.oddbird.net/) - Sass grid system
-* [Babel](https://babeljs.io/) - JavaScript compiler
 * [Foundation](http://foundation.zurb.com/) - Responsive front-end framework
-* [Webpack](https://webpack.js.org/) - Module bundler for modern JavaScript applications
-
-  #### Back-end
 * [Nodemon](https://nodemon.io/) - Auto-refresh the server on code change
 * [JWT](https://jwt.io/) - JSON Web Tokens are a method for representing claims securely between two parties
 * [Nodemailer](https://nodemailer.com/about/) - Module for Node.js to send emails
